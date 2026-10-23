@@ -28,8 +28,9 @@
       <tbody>
         <?php
 
-        echo 'DEBUG user=[' . getenv('MYSQL_USER') . '] len=' . strlen(getenv('MYSQL_PASSWORD')) . ' ini=' . substr(getenv('MYSQL_PASSWORD'), 0, 2) . ' fin=' . substr(getenv('MYSQL_PASSWORD'), -2) . ' host=[' . getenv('MYSQL_HOST') . ']';
-        $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "SG");
+        $conexion = mysqli_init();
+        mysqli_ssl_set($conexion, NULL, NULL, NULL, NULL, NULL);
+        mysqli_real_connect($conexion, getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "SG", 3306, NULL, MYSQLI_CLIENT_SSL | MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT);
 
         $cadenaSQL = "select * from s_customer";
         $resultado = mysqli_query($conexion, $cadenaSQL);
