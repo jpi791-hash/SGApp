@@ -28,6 +28,7 @@
       <tbody>
         <?php
 
+        echo 'DEBUG user=[' . getenv('MYSQL_USER') . '] len=' . strlen(getenv('MYSQL_PASSWORD')) . ' ini=' . substr(getenv('MYSQL_PASSWORD'), 0, 2) . ' fin=' . substr(getenv('MYSQL_PASSWORD'), -2) . ' host=[' . getenv('MYSQL_HOST') . ']';
         $conexion = mysqli_connect(getenv('MYSQL_HOST'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), "SG");
 
         $cadenaSQL = "select * from s_customer";
